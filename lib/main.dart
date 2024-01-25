@@ -12,6 +12,10 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
+  final TextEditingController _textController = TextEditingController();
+  String savedStr = "";
+  bool showSavedString = false;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,6 +28,7 @@ class _MainAppState extends State<MainApp> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 TextFormField(
+                  controller: _textController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: "enter text here",
@@ -31,14 +36,30 @@ class _MainAppState extends State<MainApp> {
                 ),
                 const SizedBox(height: 20),
                 OutlinedButton(
-                    onPressed: () {}, child: const Text("save input")),
+                    onPressed: () {
+                      savedStr = _textController.text;
+                    },
+                    child: const Text("save input")),
                 OutlinedButton(
-                    onPressed: () {}, child: const Text("parse input")),
+                  onPressed: () {
+                    toggleDisplay();
+                    setState(() {});
+                  },
+                  child: const Text("parse input"),
+                ),
+                const SizedBox(height: 20),
+                showSavedString
+                    ? Text(savedStr, style: const TextStyle(fontSize: 23))
+                    : const SizedBox.shrink(),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void toggleDisplay() {
+    showSavedString = !showSavedString;
   }
 }
