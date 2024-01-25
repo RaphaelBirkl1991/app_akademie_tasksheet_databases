@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tasksheet_databases/crud_operations.dart';
 import 'package:tasksheet_databases/simple_saving.dart';
 
-void main() {
+void main() async {
   runApp(const MainApp());
 }
 
